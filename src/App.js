@@ -10,6 +10,7 @@ import { fetchMovie } from "./components/helper/AxiosHelper";
 const App = () => {
   const [movieList, setMovieList] = useState([]);
   const [movie, setMovie] = useState({});
+  const [category, setCategory] = useState("");
 
   const getMovie = async (search) => {
     const movie = await fetchMovie(search);
@@ -24,7 +25,6 @@ const App = () => {
     const isExist = movieList.find((item) => item.imdbID === movie.imdbID);
     if (!isExist) {
       setMovieList([...movieList, obj]);
-
       setMovie({});
     } else {
       alert("movie already in list");
@@ -36,11 +36,9 @@ const App = () => {
     setMovieList(filteredList);
   };
 
-  const handleOnSelect = (cat) => {
-    //happy selected
-    //lazy selected
-    // all seleted
-  };
+  const movieToDisplay = category
+    ? movieList.filter((item) => item.cat === category)
+    : movieList;
   return (
     <div className="wrapper">
       <Container>
@@ -55,11 +53,12 @@ const App = () => {
           )}
         </div>
         <hr />
+        {category || "all"} selected
       </Container>
       <MovieList
-        movieList={movieList}
+        movieList={movieToDisplay}
         handleOnDelete={handleOnDelete}
-        handleOnSelect={handleOnSelect}
+        setCategory={setCategory}
       />
     </div>
   );
