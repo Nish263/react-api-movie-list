@@ -54,12 +54,12 @@ const App = () => {
         </div>
         <hr />
         {category || "all"} selected
+        <MovieList
+          movieList={movieToDisplay}
+          handleOnDelete={handleOnDelete}
+          setCategory={setCategory}
+        />
       </Container>
-      <MovieList
-        movieList={movieToDisplay}
-        handleOnDelete={handleOnDelete}
-        setCategory={setCategory}
-      />
     </div>
   );
 };

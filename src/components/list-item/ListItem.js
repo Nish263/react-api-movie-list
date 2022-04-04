@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
-export const ListItem = ({ movie, fun, btnDelete }) => {
+export const ListItem = ({ movie, fun }) => {
   return (
     <Row>
       <Col>
